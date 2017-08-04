@@ -1,4 +1,4 @@
-## OWT-2: SOA Using OSGi and Apache Karaf
+# OWT-2: SOA Using OSGi and Apache Karaf
 
 Table of Contents
 =================
