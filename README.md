@@ -6,7 +6,7 @@ This repository hosts a series of mini-tutorials to bring the audience up to spe
 
 ## [OWT-2: SOA Using OSGi and Apache Karaf](/OWT-2)
 
-## [OWT-3: Creating a Service in Karaf](/OWT-3)
+## [OWT-3: Creating OSGi Services in Karaf](/OWT-3)
 
 ## [OWT-4: Exposing a Service via REST in Karaf Using CXF](/OWT-4)
 
