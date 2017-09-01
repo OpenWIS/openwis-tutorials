@@ -138,8 +138,6 @@ The Java class _com.owt4.rest.GreeterResource_ defines the REST service. The end
 > Furthermore, it is easy to notice that this `GET` endpoint has the same `@Path` as the `POST` one. This is something allowed, as long as the HTTP verb is not the same.
 >
 > ```java
-> public class GreeterResource {
->
 > @GET
 > @Path("/greeter")
 > @Produces(MediaType.APPLICATION_JSON)
@@ -152,8 +150,6 @@ The Java class _com.owt4.rest.GreeterResource_ defines the REST service. The end
 > A service endpoint normally returns a 200 HTTP status code. However, any code may be returned, as in this case where a `Status.METHOD_NOT_ALLOWED (405)` code is returned.
 >
 > ```java
-> public class GreeterResource {
->
 > @GET
 > @Path("/aNotAllowedMethod")
 > @Produces(MediaType.APPLICATION_JSON)
