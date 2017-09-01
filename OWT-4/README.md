@@ -15,8 +15,6 @@ Table of Contents
       * [REST](#rest)
       * [Apache CXF](#apache-cxf)
     * [Apache CXF maven dependency](#apache-cxf-maven-dependency)
-    * [Creating the REST endpoints](#creating-the-rest-endpoints)
-      * [Injecting OSGi Service](#injecting-osgi-service)
     * [The REST Service](#the-rest-service)
       * [Injecting OSGi Service](#injecting-osgi-service-1)
       * [Defining REST Endpoints](#defining-rest-endpoints)
@@ -101,20 +99,6 @@ To make Apache CXF available to our Java source code, the following dependency i
             <version>${javax.ws.rs-api.version}</version>
         </dependency>
 ```
-
-### Creating the REST endpoints
-The Java class _com.owt4.rest.GreeterResource_ defines the REST service. The endpoints will be declared herein, and the OSGi services will be used inside those methods. 
-
-> #### Injecting OSGi Service
-> The `@Inject` and `@OsgiService` annotations are combined to inject the GreetingService OSGi service into the REST service class.
->
-> ```java
-> public class GreeterResource {
->
-> @Inject
-> @OsgiService
-> private GreetingService greetingService;
->```
 
 ### The REST Service
 The Java class _com.owt4.rest.GreeterResource_ defines the REST service. The endpoints will be declared herein, and the OSGi services will be used inside those methods. 
