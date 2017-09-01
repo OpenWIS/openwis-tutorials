@@ -24,7 +24,7 @@ Table of Contents
       * [HTTP Status Code](#http-status-code)
     * [Configuring CXF in Blueprint](#configuring-cxf-in-blueprint)
       * [CXF Configuration](#cxf-configuration)
-  * [5\. Installting the Bundles on Karaf](#5-installting-the-bundles-on-karaf)
+  * [5\. Installing the Bundles on Karaf](#5-installing-the-bundles-on-karaf)
       * [Installing Apache CXF and its Dependencies](#installing-apache-cxf-and-its-dependencies)
     * [Installing: bundle\-lib](#installing-bundle-lib)
     * [Installing: bundle\-api](#installing-bundle-api)
@@ -132,7 +132,7 @@ The Java class _com.owt4.rest.GreeterResource_ defines the REST service. The end
 
 > #### Defining REST Endpoints
 > The `@POST` annotation specifies that this endpoint may only be called using `HTTP POST`.  
-> The `@Path` defines the relative path of this rendpoint.  
+> The `@Path` defines the relative path of this endpoint.  
 > The `@Produces` is the content type of the endpoint's response, and the `@Consumes` the content type of the incoming request.  
 > The `@QueryParam` specifies the name of a query parameter. It is mostly used in `GET` requests, but in CXF when coupled with `@Consumes("application/x-www-form-urlencoded")`, it is used to specify the name of a parameter in the  `BODY` of the `POST` request.
 >
@@ -201,7 +201,7 @@ Some extra configuration is required in order to be able to deploy the REST serv
 > </jaxrs:server>
 >```
 
-## 5. Installting the Bundles on Karaf
+## 5. Installing the Bundles on Karaf
 Before installing the bundles themselves, Karaf must me prepared as described below:
 
 #### Installing Apache CXF and its Dependencies
