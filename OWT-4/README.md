@@ -121,8 +121,6 @@ The Java class _com.owt4.rest.GreeterResource_ defines the REST service. The end
 > The `@QueryParam` specifies the name of a query parameter. It is mostly used in `GET` requests, but in CXF when coupled with `@Consumes("application/x-www-form-urlencoded")`, it is used to specify the name of a parameter in the  `BODY` of the `POST` request.
 >
 > ```java
-> public class GreeterResource {
->
 > @POST
 > @Path("/greeter")
 > @Produces(MediaType.APPLICATION_JSON)
