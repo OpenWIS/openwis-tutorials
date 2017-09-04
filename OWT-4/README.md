@@ -161,7 +161,7 @@ Some extra configuration is required in order to be able to deploy the REST serv
 
 > #### CXF Configuration
 > In this snippet we configure some global attributes of the CXF REST instance.
-> The `jaxrs:server` is the base of the the REST service. The `id` attribute is used to identify the bean, in case a reference to is is required from another component. The `address` attribute is the relative base path that will be used by all endpoints of that service.  
+> The `jaxrs:server` is the base of the the REST service. The `id` attribute is used to identify the bean, in case a reference to is required from another component. The `address` attribute is the relative base path that will be used by all endpoints of that service.  
 > 
 > The `jaxrs:serviceBeans` defines the services that will be deployed on this specific (OWT4RS) REST server. In this tutorial it has a single entry, the bean with `id=greeterResource` as stated in the `ref` tag. The definition of that bean is auto-generated in the _code/bundle-impl/target/generated-sources/blueprint/OSGI-INF/blueprint/autowire.xml_ file, as discussed in OWT-3.
 > 
@@ -250,7 +250,7 @@ cxf:list-endpoints
 
 ![](img/restEndpointsCmd.png)
 
-The REST endpoints are deployed on the embedded Jetty and they can be accessed the via a browser at the default URL: http://localhost:8181/cxf
+The REST endpoints are deployed on the embedded Jetty and they can be accessed via a browser at the default URL: http://localhost:8181/cxf
 
 ![](img/cxfServicelist.png)
 
