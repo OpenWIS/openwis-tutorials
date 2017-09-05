@@ -12,7 +12,7 @@ import com.owt5.lib.DemoUtil;
 
 /**
  * 
- * @Singleton = a signle instance is reused
+ * @Singleton = a single instance is reused
  * 
  * @OsgiServiceProvider = OSGi reference to interface class.
  * 
@@ -27,7 +27,7 @@ public class EchoServiceImpl implements EchoService {
 		
 		// TODO RANDOM DELAY....
 		int min = 1;
-		int max = 3;
+		int max = 5;
 		try {
 			int randomDelay = ThreadLocalRandom.current().nextInt(min, max + 1);
 			TimeUnit.SECONDS.sleep(randomDelay);

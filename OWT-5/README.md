@@ -25,7 +25,57 @@ feature:install cxf-commands
 
 cxf:list-endpoints
 
+http://localhost:8181/cxf
 
+http://localhost:8181/cxf/api?_wadl
+
+http://localhost:8181/cxf/api/echo
+
+
+// bundle and ui.. 
+
+
+
+
+
+
+chacnge at bundle-ui pom.xml:
+
+   <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>${maven-bundle-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Web-ContextPath>/</Web-ContextPath>
+                        <_wab>src/main/webapp</_wab>
+                    </instructions>
+                </configuration>
+            </plugin>
+
+
+
+
+
+
+feature:install war
+
+
+bundle:install -s mvn:com.owt5.demo/bundle-ui/1.0.0-SNAPSHOT
+
+
+
+![](img/installingUIbuindle.png)
+
+
+
+by default it uses index.html at:
+http://localhost:8181
+
+if there is any other html name page .. it may accessed 
+http://localhost:8181/{anyotherhtml}.html
 
 
 

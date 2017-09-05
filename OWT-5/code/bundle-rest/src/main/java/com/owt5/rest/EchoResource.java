@@ -37,18 +37,19 @@ public class EchoResource {
 
 	@POST
 	@Path("/echo")
+	//@Produces("application/x-www-form-urlencoded")
+	//@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	// @Consumes("application/x-www-form-urlencoded")
-	// public MessageDTO greetPost(@FormParam("name") String name) { //temp for
-	// local test
 	public MessageDTO postMessage(MessageDTO messageDTO) {
+		System.out.println("POST message called "+ messageDTO);
 
-		if (messageDTO.getMessage() == null || messageDTO.getMessage().isEmpty()) {
-			messageDTO.setMessage("No message??");
-
+		if (messageDTO == null || messageDTO.getMessage().isEmpty()) {
+			
+			messageDTO = new MessageDTO("No message??");
+			
 		}
-		messageDTO.setWhen(dateformat.format(Calendar.getInstance()));
+		//messageDTO.setWhen(dateformat.format(Calendar.getInstance()));
 
 		return new MessageDTO("From POST: " + echoService.echo(messageDTO.getMessage()));
 	}
