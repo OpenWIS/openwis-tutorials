@@ -6,7 +6,7 @@ The purpose of this tutorial is to create the following:
 2. A mechanism which will consume the service(s) defined in OWT-4, by using jQuery.
 
 
-
+```
 karaf.bat clean
 
 feature:install pax-cdi 
@@ -24,6 +24,7 @@ bundle:install -s mvn:com.owt5.demo/bundle-rest/1.0.0-SNAPSHOT
 feature:install cxf-commands
 
 cxf:list-endpoints
+```
 
 http://localhost:8181/cxf
 
@@ -38,9 +39,9 @@ http://localhost:8181/cxf/api/echo
 
 
 
-
 chacnge at bundle-ui pom.xml:
 
+```xml
    <plugins>
             <plugin>
                 <groupId>org.apache.felix</groupId>
@@ -55,10 +56,11 @@ chacnge at bundle-ui pom.xml:
                 </configuration>
             </plugin>
 
+```
 
 
 
-
+```
 
 feature:install war
 
@@ -67,6 +69,7 @@ bundle:install -s mvn:com.owt5.demo/bundle-ui/1.0.0-SNAPSHOT
 
 
 
+```
 ![](img/installingUIbuindle.png)
 
 
