@@ -36,7 +36,7 @@ As in previous OWT sessions, the `bundle-parent` maven module serves as the _par
 Library bundle. No changes from OWT-4.
 
 ## 4. Maven module: bundle-api
-Likewise OWT-4, the bundle-api maven module hosts the Service API, where the service specification resides. However, this tutorial  includes the new interface `EchoService` which specifies the new service needed for OWT-5 demonstration purposes.
+Likewise OWT-4, the bundle-api maven module hosts the Service API, where the service specification resides. However, this tutorial includes the new interface `EchoService` which specifies the new service needed for OWT-5 demonstration purposes.
 EchoService is a simple service that contains the `echo` method signature only.
 
 ```java
@@ -91,7 +91,7 @@ The bundle-rest maven module hosts the REST service. The service endpoints utili
 The bunle-ui is a simple Maven Web project, containing all UI components needed enable deployment as bundle. Accessing OSGi services via the REST endpoint.
 
 
-First of all at pom.xml we need to set up _apache.felix_ to build a bundle with  `web context`:
+First of all at pom.xml we need to set up _apache.felix_ to build a bundle with `web context`:
 
 ```xml
     <plugin>
@@ -170,7 +170,7 @@ Before installing the bundles themselves, Karaf must me prepared as described be
 
 #### Installing dependencies
 
-Likewise OWT-4, since we have cleaned the  Karaf, we have to re-install all the necessary dependencies:
+Likewise OWT-4, since we have cleaned the Karaf, we have to re-install all the necessary dependencies:
 
 Apache CXF repository:
 ```
