@@ -10,11 +10,15 @@ Table of Contents
 
 
 ## 1. General Notes
-```This tutorial will integrate CXF into OWT-3 and demonstrate how to utilize it in order to create a REST service with a number of endpoints. The created service will contain 3 methods that will allow a client to:```
-
-The purpose of this tutorial is to create the following:
+This tutorial consists an introduction to web application deployment in Karaf. Based on a refactored version of OWT-4, where a web applcation bandle development and deployment are been explained.
+This tutorial will demonstrate the following:
 1. A single-page web application
 2. A mechanism which will consume the service(s) defined in OWT-4, by using jQuery.
+
+
+>The code for this tutorial is available in the code directory. It is recommended to have it checked-out locally and refer to it while going through the tutorial.
+>All the maven modules detailed below have the standard maven directory structure.
+>The code of this tutorial builds on the base provided by OWT-3. As a result, only new concepts/features will be explained here.
 
 
 > #### Cleaning Karaf
@@ -32,8 +36,8 @@ As in previuous OWT sessions, the `bundle-parent` maven module serves as the _pa
 Library bundle. No changes from OWT-4.
 
 ## 4. Maven module: bundle-api
-Likewise OWT-4, the `bundle-api` maven module hosts the Service API, where the service specification resides. However, in this tutorial it icnludes a new interface `EchoService` which spesifies the new service needed for OWT-5 demonstration purposies. 
-`EchoService` is a simple service that has the `echo` method signature only.
+Likewise OWT-4, the bundle-api maven module hosts the Service API, where the service specification resides. However, in this tutorial it icnludes a new interface `EchoService` which spesifies the new service needed for OWT-5 demonstration purposies. 
+`EchoService` is a simple service that contains the `echo` method signature only.
 
 ```java
 public interface EchoService
@@ -44,21 +48,28 @@ Likewise OWT-4, the dto package hosts a simple DTO. In this OWT we will use Mess
 
 
  ## 5. Maven module: bundle-impl
-Implemantation of `EchoService' bundle:
+The service implemantation bundle-impl, contains the implementation class of EchoService. 
+```java
+@Singleton
+@OsgiServiceProvider(classes = { EchoService.class })
+public class EchoServiceImpl implements EchoService {
+...
+```
+EchoServiceImpl class implements the `echo` method, where: 
 
 After a random delay :
 ```java
         int randomDelay = ThreadLocalRandom.current().nextInt(min, max + 1);
         TimeUnit.SECONDS.sleep(randomDelay);
 ```
-EchoService implementation returns the result of [bubnle-lib]()
+EchoServiceImpl returns the String result of [bubnle-lib]()
 ```java
     return util.upperCaseIt(text);
 ```
 
  ## 6. Maven module: bundle-rest
 
- At the `bundle-rest`REST package, the declared endpoint `postMessage` produces but also consumes JSON messages:
+The bundle-rest maven module hosts the REST service. The service endpoints utilize the OSGi services which are declared in bundle-api and implemented in bundle-impl.At the bundle-rest package, the declared endpoint `postMessage`produces but also consumes JSON messages:
 
 ```java
     @Produces(MediaType.APPLICATION_JSON)
@@ -70,11 +81,9 @@ EchoService implementation returns the result of [bubnle-lib]()
  The `postMessage` endpoint returns the response via `echoService` which echoes the given message.
 
 
-
 ## 7. Maven module: bundle-ui
 
-The `bunle-ui` is a simple Maven Web project, containing all UI componenents needed enable deployment as bundle.
-Bunlde `bunle-ui` will access OSGi servises via the REST entpoint.
+The bunle-ui is a simple Maven Web project, containing all UI componenents needed enable deployment as bundle. Accessing OSGi servises via the REST entpoint.
 
 
 First of all at pom.xml we need to set up _apache.felix_ to build a bundle with  `web context`:
@@ -133,7 +142,6 @@ function callService(message) {
 ```
 
 
-
 ### Apache Karaf WebContainer
 
 Apache Karaf can act as a complete WebContainer, fully supporting JSP/Servlet specification.
@@ -164,7 +172,7 @@ Apache CXF repository:
 repo-add cxf 3.1.8
 ```
 
-Now that the repository is added, the `cxf-jaxrs` and `cxf-jackson` features can be installed:
+ After repository CXF features can be installed:`cxf-jaxrs` and `cxf-jackson`
 
 ``` 
 feature:install cxf-jaxrs cxf-jackson
@@ -184,7 +192,6 @@ As mentioned [before](Link gia to chapter!!!!), to deploy web based modules, we 
 ```
 feature:install war
 ```
-
 
 
 ### Installing: bundle-lib
@@ -218,6 +225,12 @@ bundle:install -s mvn:com.owt5.demo/bundle-rest/1.0.0-SNAPSHOT
 bundle:install -s mvn:com.owt5.demo/bundle-ui/1.0.0-SNAPSHOT
 ```
 
-
 ![](img/installingUIbuindle.png)
+
+
+### The web page
+
+As mentioned before the deployed web page can be accessed at http://localhost:8181/main.html
+
+![](img/echo_serviceHome.png)
 
