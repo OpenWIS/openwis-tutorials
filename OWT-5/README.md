@@ -234,3 +234,7 @@ As mentioned before the deployed web page can be accessed at http://localhost:81
 
 ![](img/echo_serviceHome.png)
 
+
+Using the `Echo` service:
+
+![](img/caling_theService.png)
