@@ -11,7 +11,7 @@ Table of Contents
   * [3\. Maven module: bundle\-lib](#3-maven-module-bundle-lib)
   * [4\. Maven module: bundle\-api](#4-maven-module-bundle-api)
       * [JSON](#json)
-  * [3\. Maven module: bundle\-rest](#3-maven-module-bundle-rest)
+  * [5\. Maven module: bundle\-rest](#5-maven-module-bundle-rest)
       * [REST](#rest)
       * [Apache CXF](#apache-cxf)
     * [Apache CXF maven dependency](#apache-cxf-maven-dependency)
@@ -22,13 +22,13 @@ Table of Contents
       * [HTTP Status Code](#http-status-code)
     * [Configuring CXF in Blueprint](#configuring-cxf-in-blueprint)
       * [CXF Configuration](#cxf-configuration)
-  * [5\. Installing the Bundles on Karaf](#5-installing-the-bundles-on-karaf)
+  * [6\. Installing the Bundles on Karaf](#6-installing-the-bundles-on-karaf)
       * [Installing Apache CXF and its Dependencies](#installing-apache-cxf-and-its-dependencies)
     * [Installing: bundle\-lib](#installing-bundle-lib)
     * [Installing: bundle\-api](#installing-bundle-api)
     * [Installing: bundle\-impl](#installing-bundle-impl)
     * [Installing: bundle\-rest](#installing-bundle-rest)
-  * [6\. Testing With SoapUI](#6-testing-with-soapui)
+  * [7\. Testing With SoapUI](#7-testing-with-soapui)
       * [SoapUI](#soapui)
     * [REST Project Creation](#rest-project-creation)
     * [Testing REST Services](#testing-rest-services)
@@ -75,7 +75,7 @@ In order to ensure that the JSON response of the service is structured correctly
 
 In Java, DTOs are usually simple objects with private fields and accessor methods (getters & setters) for each field. They are commonly serialized and deserialized on-the-fly by the framework/library that provides the web services, and their most common serialization formats are XML and JSON. For our service, we have created a DTO that will simply carry a response message to the caller, in the _com.owt4.api.dto.ResponseDTO.java_ file.
 
-## 3. Maven module: bundle-rest
+## 5. Maven module: bundle-rest
 The `bundle-rest` maven module hosts the REST service. The service endpoints utilize the OSGi services which are declared in `bundle-api` and implemented in `bundle-impl`.
 
 > #### REST
@@ -179,7 +179,7 @@ Some extra configuration is required in order to be able to deploy the REST serv
 > </jaxrs:server>
 >```
 
-## 5. Installing the Bundles on Karaf
+## 6. Installing the Bundles on Karaf
 Before installing the bundles themselves, Karaf must me prepared as described below:
 
 #### Installing Apache CXF and its Dependencies
@@ -258,7 +258,7 @@ Where the WADL file is:
 
 ![](img/cxfApiWadl2.png)
 
-## 6. Testing With SoapUI
+## 7. Testing With SoapUI
 SoapUI is a tool commonly used by developers for web-service testing. It will be used in this tutorial to demonstrate the service's functionality.
 
 > #### SoapUI
