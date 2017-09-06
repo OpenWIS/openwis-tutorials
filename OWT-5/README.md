@@ -10,7 +10,7 @@ Table of Contents
 
 
 ## 1. General Notes
-This tutorial consists an introduction to web application deployment in Karaf. Based on a refactored version of OWT-4, where a web applcation bandle development and deployment are been explained.
+This tutorial consists an introduction to web application deployment in Karaf. Based on a refactored version of OWT-4, where a web application bundle development and deployment are been explained.
 This tutorial will demonstrate the following:
 1. A single-page web application
 2. A mechanism which will consume the service(s) defined in OWT-4, by using jQuery.
@@ -23,21 +23,21 @@ This tutorial will demonstrate the following:
 
 > #### Cleaning Karaf
 > In order to avoid dependency conflicts and other configuration errors, we will make sure that Karaf is clean and unnecessary bundles are removed. _(Please note that this is not mandatory, but it is considered a good practice)_.
-> 
+>
 > This is achieved by starting Karaf the following way:
 > ```
 > karaf.bat clean
 > ```
 
 ## 2. Maven module: bundle-parent
-As in previuous OWT sessions, the `bundle-parent` maven module serves as the _parent_ maven project for building the application/service. 
+As in previous OWT sessions, the `bundle-parent` maven module serves as the _parent_ maven project for building the application/service.
 
 ## 3. Maven module: bundle-lib
 Library bundle. No changes from OWT-4.
 
 ## 4. Maven module: bundle-api
-Likewise OWT-4, the bundle-api maven module hosts the Service API, where the service specification resides. However, in this tutorial it icnludes a new interface `EchoService` which spesifies the new service needed for OWT-5 demonstration purposies. 
-`EchoService` is a simple service that contains the `echo` method signature only.
+Likewise OWT-4, the bundle-api maven module hosts the Service API, where the service specification resides. However, this tutorial  includes the new interface `EchoService` which specifies the new service needed for OWT-5 demonstration purposes.
+EchoService is a simple service that contains the `echo` method signature only.
 
 ```java
 public interface EchoService
@@ -48,14 +48,14 @@ Likewise OWT-4, the dto package hosts a simple DTO. In this OWT we will use Mess
 
 
  ## 5. Maven module: bundle-impl
-The service implemantation bundle-impl, contains the implementation class of EchoService. 
+The service implementation bundle-impl, contains the implementation class of EchoService.
 ```java
 @Singleton
 @OsgiServiceProvider(classes = { EchoService.class })
 public class EchoServiceImpl implements EchoService {
 ...
 ```
-EchoServiceImpl class implements the `echo` method, where: 
+EchoServiceImpl class implements the `echo` method, where:
 
 After a random delay :
 ```java
@@ -67,14 +67,19 @@ EchoServiceImpl returns the String result of [bubnle-lib]()
     return util.upperCaseIt(text);
 ```
 
+The new echo service WADL:
+
+ ![](img/echoServiceWadl.png)
+
+
  ## 6. Maven module: bundle-rest
 
 The bundle-rest maven module hosts the REST service. The service endpoints utilize the OSGi services which are declared in bundle-api and implemented in bundle-impl.At the bundle-rest package, the declared endpoint `postMessage`produces but also consumes JSON messages:
 
 ```java
     @Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public MessageDTO postMessage(MessageDTO messageDTO) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public MessageDTO postMessage(MessageDTO messageDTO) {
         ...
     }
 ```
@@ -83,7 +88,7 @@ The bundle-rest maven module hosts the REST service. The service endpoints utili
 
 ## 7. Maven module: bundle-ui
 
-The bunle-ui is a simple Maven Web project, containing all UI componenents needed enable deployment as bundle. Accessing OSGi servises via the REST entpoint.
+The bunle-ui is a simple Maven Web project, containing all UI components needed enable deployment as bundle. Accessing OSGi services via the REST endpoint.
 
 
 First of all at pom.xml we need to set up _apache.felix_ to build a bundle with  `web context`:
@@ -110,15 +115,15 @@ After build the generated Manifest file will have a new entry `Web-ContextPath: 
 
 ### Web content
 
-As declared at `pom.xml`all web contentent will be placed at:`<_wab>src/main/webapp</_wab>`.
+As declared at `pom.xml`all web content will be placed at:`<_wab>src/main/webapp</_wab>`.
 In this OWT we are using `jquery-3.2.1.min` and a custom JS library `script.js`.
 Where `callService` function is actually sending the 'JSON' responses to the bundle REST endpoint `bundle-rest`.
-In `callService` function there is an `ajax` call declararion where: 
+In `callService` function there is an `ajax` call declaration where:
 
 - `url:` the url of the endpoint must be set
 - `method:` the HTTP type of the endpoint must be set
 - `data:` the optional response message
-- `contentType:` The media type of response message 
+- `contentType:` The media type of response message
 
 
 ```javascript
@@ -153,9 +158,9 @@ To enable the Apache Karaf WebContainer, you just have to install the `war featu
 
         karaf@root()> feature:install war
 
-The `war feature` includes an embedded web container (powered by Jetty), with its configuration but also `war feature` provides a set of console commands and a new war deployer
+The `war feature` includes an embedded web container (powered by Jetty), with its configuration but also `war feature` provides a set of console commands and a new war deploy mechanism.
 
->Note: `war feature` uses by default http://localhost:8181/ which also by default is mapped to {`Web-ContextPath` decalred at manifest}/index.html. Any other page placed at 'Web-ContextPath' is accessed as: `http://localhost:8181/AnyOtherPage.html`.
+>Note: `war feature` uses by default http://localhost:8181/ which also by default is mapped to {`Web-ContextPath` declared at manifest}/index.html. Any other page placed at 'Web-ContextPath' is accessed as: `http://localhost:8181/AnyOtherPage.html`.
 
 
 
@@ -165,7 +170,7 @@ Before installing the bundles themselves, Karaf must me prepared as described be
 
 #### Installing dependencies
 
-Likewise OWT-4, since we clean the  Karaf, we have to re-install all the nessesary dependencies:
+Likewise OWT-4, since we have cleaned the  Karaf, we have to re-install all the necessary dependencies:
 
 Apache CXF repository:
 ```
@@ -174,19 +179,19 @@ repo-add cxf 3.1.8
 
  After repository CXF features can be installed:`cxf-jaxrs` and `cxf-jackson`
 
-``` 
+```
 feature:install cxf-jaxrs cxf-jackson
 ```
 
-We also install dependency-injection depedencies:
+We also install dependency-injection dependencies:
 
 ```
-feature:install pax-cdi 
+feature:install pax-cdi
 install -s wrap:mvn:javax.inject/javax.inject/1
 ```
 
 
-As mentioned [before](Link gia to chapter!!!!), to deploy web based modules, we need to setup `Apache Karaf WebContainer` by installing the plugin `war feature`:
+As mentioned [before](Link pending), to deploy web based modules, we need to setup `Apache Karaf WebContainer` by installing the plugin `war feature`:
 
 
 ```
