@@ -25,7 +25,6 @@ public class EchoServiceImpl implements EchoService {
 	public String echo(String text) {
 		DemoUtil util = new DemoUtil();
 		
-		// TODO RANDOM DELAY....
 		int min = 1;
 		int max = 4;
 		try {
