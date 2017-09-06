@@ -221,6 +221,3 @@ bundle:install -s mvn:com.owt5.demo/bundle-ui/1.0.0-SNAPSHOT
 
 ![](img/installingUIbuindle.png)
 
-
-
-

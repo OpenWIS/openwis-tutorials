@@ -1,4 +1,4 @@
-## OWT-3 Code
+## OWT-5 Code
 
 
 ### Requirements
@@ -14,7 +14,8 @@
 ```
 
 ### Deploy Instructions
- karaf.bat clean
+```
+karaf.bat clean
 
 
  feature:install pax-cdi 
@@ -37,3 +38,6 @@ feature:install cxf-commands
 cxf:list-busses 
 
 cxf:list-endpoints 
+
+
+```
