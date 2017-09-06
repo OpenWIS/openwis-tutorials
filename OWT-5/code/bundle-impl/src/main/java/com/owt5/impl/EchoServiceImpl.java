@@ -22,19 +22,19 @@ import com.owt5.lib.DemoUtil;
 @OsgiServiceProvider(classes = { EchoService.class })
 public class EchoServiceImpl implements EchoService {
 
-	public String echo(String name) {
+	public String echo(String text) {
 		DemoUtil util = new DemoUtil();
 		
 		// TODO RANDOM DELAY....
 		int min = 1;
-		int max = 5;
+		int max = 4;
 		try {
 			int randomDelay = ThreadLocalRandom.current().nextInt(min, max + 1);
 			TimeUnit.SECONDS.sleep(randomDelay);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		return "Hello " + util.upperCaseIt(name);
+		return util.upperCaseIt(text);
 	}
 	
 }

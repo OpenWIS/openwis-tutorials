@@ -1,28 +1,27 @@
-//var SERVICE_URL = 'https://jsonplaceholder.typicode.com/posts/';
 var SERVICE_URL = 'http://localhost:8181/cxf/api/echo/';
 
 
 function sendMessage() {
-    var messageText = $('#message-input').val();
-    if ($.trim(messageText).length == 0) {
+    var message = $('#message-input').val();
+    if ($.trim(message).length == 0) {
         return;
     }
-    addUserMessageToLog(messageText);
-    callService();
+    addUserMessageToLog(message);
+    callService(message);
 }
 
-function addUserMessageToLog(messageText) {
-    addMessageToLog(messageText, 'message-log-item-user', 'User')
+function addUserMessageToLog(message) {
+    addMessageToLog(message, 'message-log-item-user', 'User')
     $('#message-input').val('');
     scrollToMessagesBottom();
 }
 
-function addEchoMessageToLog(messageText) {
-    addMessageToLog(messageText, 'message-log-item-echo', 'Echo')
+function addEchoMessageToLog(message) {
+    addMessageToLog(message, 'message-log-item-echo', 'Echo')
     scrollToMessagesBottom();
 }
 
-function addMessageToLog(messageText, messageCssClass, messageSender) {
+function addMessageToLog(message, messageCssClass, messageSender) {
     var messageLogItem = $('<div></div>');
     var messageLogItemRow1 = $('<div></div>');
     var messageLogItemRow2 = $('<div></div>');
@@ -38,7 +37,7 @@ function addMessageToLog(messageText, messageCssClass, messageSender) {
     messageLogItem.append(messageLogItemRow1);
 
 
-    messageLogItemRow2.text(messageText);
+    messageLogItemRow2.text(message);
     messageLogItem.append(messageLogItemRow2);
 
     messageLogItem.addClass(messageCssClass);
@@ -53,12 +52,16 @@ function scrollToMessagesBottom() {
     $('#message-log').animate({ scrollTop: $('#message-log').prop('scrollHeight') }, 10);
 }
 
-function callService() {
+function callService(message) {
+    var data = new Object();
+    data.message = message;
     $.ajax({
         url: SERVICE_URL,
-        method: 'POST'        
-    }).done(function (data) {
-        addEchoMessageToLog(JSON.stringify(data));
+        method: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json; charset=utf-8'
+    }).done(function (response) {
+        addEchoMessageToLog(response.message);
     }).fail(function (jqxhr, textStatus, error) {
         var err = textStatus + ", " + jqxhr.responseText;
         alert("Request Failed: " + err);

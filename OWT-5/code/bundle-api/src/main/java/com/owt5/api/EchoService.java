@@ -9,6 +9,6 @@ package com.owt5.api;
  * 
  */
 public interface EchoService {
-    String echo(String name);
+    String echo(String text);
 
 }
