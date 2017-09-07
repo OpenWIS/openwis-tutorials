@@ -10,7 +10,9 @@ Table of Contents
 
 
 ## 1. General Notes
-This tutorial consists an introduction to web application deployment in Karaf. Based on a refactored version of OWT-4, where a web application bundle development and deployment are been explained.
+This tutorial is an introduction on how to deploy a web application in Karaf and is based on a refactored version of OWT-4, in which the development and the deployment of a web application bundle were explained.
+
+
 This tutorial will demonstrate the following:
 1. A single-page web application
 2. A mechanism which will consume the service(s) defined in OWT-4, by using jQuery.
@@ -62,7 +64,7 @@ After a random delay :
         int randomDelay = ThreadLocalRandom.current().nextInt(min, max + 1);
         TimeUnit.SECONDS.sleep(randomDelay);
 ```
-EchoServiceImpl returns the String result of [bubnle-lib]()
+EchoServiceImpl returns the String result of bubnle-lib.
 ```java
     return util.upperCaseIt(text);
 ```
@@ -87,11 +89,11 @@ The bundle-rest maven module hosts the REST service. The service endpoints utili
 
 
 ## 7. Maven module: bundle-ui
-
-The bunle-ui is a simple Maven Web project, containing all UI components needed enable deployment as bundle. Accessing OSGi services via the REST endpoint.
+The bundle-ui is a simple Maven web project which contains all the needed UI components in order to enable deployment as bundle and to access the OSGi services via the REST endpoint.
 
 
 First of all at pom.xml we need to set up _apache.felix_ to build a bundle with `web context`:
+
 
 ```xml
     <plugin>
@@ -108,16 +110,15 @@ First of all at pom.xml we need to set up _apache.felix_ to build a bundle with 
     </plugin>
 ```
 
-
-After build the generated Manifest file will have a new entry `Web-ContextPath: /`
+Once it is built, the generated Manifest file will have a new entry `Web-ContextPath`:
 
  ![](img/MANIFEST_ui.png)
 
 ### Web content
 
-As declared at `pom.xml`all web content will be placed at:`<_wab>src/main/webapp</_wab>`.
-In this OWT we are using `jquery-3.2.1.min` and a custom JS library `script.js`.
-Where `callService` function is actually sending the 'JSON' responses to the bundle REST endpoint `bundle-rest`.
+
+The `<_wab>src/main/webapp</_wab>` declaration in the pom.xml, indicates that all the web content will be placed in the src/main/webapp folder. This folder includes the main.html, style.css, jquery-3.2.1.min.js and script.js files. The script.js file is a custom JS library, in which the `callService function` is defined and is used to send the JSON responses to the bundle REST endpoint.
+
 In `callService` function there is an `ajax` call declaration where:
 
 - `url:` the url of the endpoint must be set
