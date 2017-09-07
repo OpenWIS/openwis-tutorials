@@ -1,4 +1,4 @@
-var SERVICE_URL = 'http://localhost:8181/cxf/api/echo/';
+var SERVICE_URL = '/cxf/api/echo/';
 
 
 function sendMessage() {
