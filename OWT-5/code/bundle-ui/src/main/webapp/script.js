@@ -1,6 +1,5 @@
 var SERVICE_URL = '/cxf/api/echo/';
 
-
 function sendMessage() {
     var message = $('#message-input').val();
     if ($.trim(message).length == 0) {
