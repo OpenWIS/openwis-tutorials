@@ -68,11 +68,19 @@ Angular (commonly referred to as "Angular 2+" or "Angular 2") is a TypeScript-ba
 
 ## Creating an Angular Web application
 
-.../
 
 ### Setup Enviroment Prerequisites
 
-####Install Node.js® and NPM on Windows
+
+#### Install Python
+
+Download and install Python 2.7.* version from [python.org/downloads](https://www.python.org/downloads/).
+ >Note: This tutorial uses version 2.7.2.
+
+ ![](img/pythonSetup.png)
+
+
+#### Install Node.js® and NPM on Windows
 
 - Download the Windows installer from the Nodes.js® [web site](https://nodejs.org/en/)
 - Run the installer (the .msi file you downloaded in the previous step.)
@@ -86,19 +94,16 @@ Angular (commonly referred to as "Angular 2+" or "Angular 2") is a TypeScript-ba
 
 NPM stands for Node Package Manager. It's an online repository of node packages that can be quickly and programmatically installed from the command line, with the `npm` command line interface that comes with Node.
 
-### Angular Angular CDK (compiler-cli)
-Angular cli is a command line interface to scaffold and build angular apps using nodejs style (commonJs) modules. Not only it provides you scalable project structure, instead it handles all common tedious tasks for you out of the box.
-
-To install Angular cli use the npm tool:
-
-    npm install --save @angular/compiler-cli 
 
 
-Create a new Angular project called angular-ui:
+
+Create a new Angular project called **angular-ui**:
 
     ng new angular-ui --style scss
 
-This will create a new Angular 2 project from scratch and set it up so that you can use SASS as CSS preprocessor. If you go inside the angular-ui folder that should have just been created you’ll find a folder structure that will look more or less like this:
+This will create a new `Angular 2` project from scratch and set it up so that you can use SASS as CSS preprocessor. 
+
+Inside the `angular-ui` folder that should have just been created, you’ll find a folder structure that will look more or less like this:
 
 
 ```shell
@@ -181,7 +186,12 @@ entryComponents| A list of components that are not referenced in a reachable com
 
 Import the NgModule for each component you want to use:
 
+In the current examble at `app.module.ts`:
 ```ts
+import { NgModule } from '@angular/core';
+
+//...
+
 @NgModule({
   declarations: [
     AppComponent
@@ -197,14 +207,35 @@ Import the NgModule for each component you want to use:
 ```
 
 
+
+
+
+META STON IDIO FAKELO
+
+### Angular Angular CDK 
+
+
+npm install @angular/cdk@2.0.0-beta.10
+
+
+# ## compiler-cli
+
+Angular cli is a command line interface to scaffold and build angular apps using nodejs style (commonJs) modules. Not only it provides you scalable project structure, instead it handles all common tedious tasks for you out of the box.
+
+To install Angular cli use the npm tool:
+
+    npm install --save @angular/compiler-cli 
+
+
 ### UI Layout & Styling
-The user interface components are laid-out and styled in the `app.component.html` and `style.css` files.
+
+The user interface components are laid-out and styled in the `app.component.html` and `style.css` files. For Better look and feel we will use `Angular Material` along with `Angular Animations`, decorated with one of Angular's official css theme.
 
 
 
 #### Step 1: Install Angular Material
 
- Material Design components are pre built ui components, created for and with Angular.
+ Material Design components are pre-built ui components, created for and with Angular.
 
     npm install --save @angular/material
 
@@ -216,7 +247,7 @@ To enable these animations to your app, you have to install the `@angular/animat
         npm install --save @angular/animations
 
 
-Also include the `BrowserAnimationsModule` in your app:
+Also include the `BrowserAnimationsModule` in the app:
  ![](img/BrowserAnimationsModule.png)
 
 
@@ -234,41 +265,43 @@ Edit `Style.scss` and add at the top of it:
     @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 
-### Step 5:
+### Step 5: Install external library HammerJS
 Some components rely on library `HammerJS` for gestures. In order to get the full feature-set of these components, HammerJS must be loaded into the application:
 
     npm install --save hammerjs
 
+After installing, import it on the app's entry point `src/main.ts`:
+
+    import 'hammerjs';
 
 
-You can test that everything works as it should by running the development server. Type the following command:
+TODO   check 
+https://stackoverflow.com/questions/39496267/module-not-found-error-cant-resolve-hammerjs
+
+
+
+#### Test    
+You can test that everything works as it should by running the development server. 
+
+In the Angular project `angular-ui` folder, type the following command:
 
      ng serve --open
 
+Open an browser and navigate to http://localhost:4200/ where Angular default page will appear:
+
+ ![](img/angularUiDefaultpage.png.png)
 
 
 
+> #### Main Content 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-> #### Main Content
 > As it can be seen in the HTML snippet, the content `div` contains a header element, the message log box where all messages are displayed, and the controls where message input and the Send button reside. Each of these elements has an `id` attribute.
->
+
+
+We edit src/app/app.component.html
+
+
+
 > ```html
 > <div id="content">
 >   <div id="header">OWT-5: Echo Service</div>
@@ -293,7 +326,40 @@ You can test that everything works as it should by running the development serve
 >   border-bottom: 1px solid #1976D2;
 > }
 >
-> ...
+> 
+
+
+
+MessageService to kanoume import
+sto app module.ts //TEST me?
+
+
+kai sto providers:
+  providers: [],
+
+kai sto appcomponent.ts
+
+
+
+
+
+bazw tp HttpModule  episis
+
+
+Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:4200' is therefore not allowed access.
+
+
+
+####
+JAX-RS: CORS
+
+
+http://cxf.apache.org/docs/jax-rs-cors.html
+
+
+
+
+...
 >
 
 ### Business Logic

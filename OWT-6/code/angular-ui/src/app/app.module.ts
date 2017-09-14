@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 
+import { MessageService } from "../service/service";
+
+import { HttpModule } from '@angular/http';
 
 
 
@@ -19,8 +22,9 @@ import { AppComponent } from './app.component';
     FormsModule,
     MaterialModule,
     BrowserAnimationsModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

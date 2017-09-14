@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { ElementRef } from '@angular/core'; 
 import { AfterViewChecked, ViewChild, OnInit } from '@angular/core';
 
+import { MessageService } from "../service/service";
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [MessageService],
 })
 
 
@@ -17,14 +19,22 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   title = 'app';
   chatroom: string[] = [];
-  home: string[] = []; //["dimi1","","dimi2","dimi3","","dimi4"];
-  away: string[] = []; // ["","jv1","","","jv2","" ];
+  home: string[] = []; 
+  away: string[] = []; 
+
 // 8a exoume 2 listes mia pou 8a einai ta chat tou home kai mia pou 8a einai tou away..
 // 8a bazoume kai tis 2 sthn chatroom kai 8a 
 
 
   chatroomText: string;
   message: string = '';
+
+  
+
+  constructor(private messageService: MessageService) {
+    
+    }
+
 
 // user messages came through here:
   sendData(message: string) {
@@ -40,6 +50,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   sendDataMockService(message){
     if (message.length > 0) {
+      
+     console.log("To SERVICE MOU EPESTREPSE "+ this.messageService.create(message));
+
       this.away.push(message);
       this.home.push("");
       this.logText(message);
