@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+.owt-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .owt-full-width {
+    width: 100%;
+  }
+
+.owt-list{
+    
+    overflow-y:scroll;
+    scroll-behavior: smooth;
+    margin: auto;
+    overflow-wrap: normal;
+    padding: 2px;
+    width: 45%;
+    //  max-height: 350px;
+    height:  350px; 
+    // size: 150px;
+    // min-width: 150px;
+    // max-width: 500px;
+    border-style: groove;
+}
+
+
+.btn-color{
+    color:primary;
+  //color: #1976D2;
+}
+
+#message-log {
+    width: 60%;
+    height: 60%;
+    margin: 50px 0 50px;
+    background: #ffffff;
+    display: inline-block;
+    border: 1px solid #1976D2;
+    font-size: 15px;
+    overflow: auto;
+}
+
+.message-log-who{
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.message-log-item-user{
+    text-align: right;
+    color: #ABC5D2;
+    background: #E3F2FD;
+    // padding: 15px;
+}
+
+.message-log-item-echo{
+    text-align: left;
+    // padding: 15px;
+    color: #1976D2;
+}
