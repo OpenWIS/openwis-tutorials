@@ -483,7 +483,10 @@ Within the `plugin` we add the list of desired executions, here is the example t
             </execution>
 ```
 
->Note: `frontend-maven-plugin` is set to install all the nessesary packages including `compiler-cli`, `cdk`and others that needs to be installed only once. So in development environments it is sugested to use the `<skip>true</skip>` inside the `<configuration>` tag in order to save time.
+>Note: `frontend-maven-plugin` is set to install all the nessesary packages including `compiler-cli`, `cdk`and others that needs to be installed only once. So in development environments, after the first build, it is sugested to build using :
+
+    mvn clean install -Dskip.npm.deps=true
+
 
 
 
