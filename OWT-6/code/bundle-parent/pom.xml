@@ -12,6 +12,7 @@
 		<module>../bundle-api</module>
 		<module>../bundle-impl</module>
 		<module>../bundle-rest</module>
+		<module>../bundle-ui</module>
 	</modules>
 
 	<properties>

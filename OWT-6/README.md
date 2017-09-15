@@ -55,6 +55,12 @@ Below is the echo service WADL, same as OWT-5:
 ## 7. Angular project: angular-ui
 The angular-ui is an Angular project which contains the web content and the configuration required in order to deploy itself as an Angular web application.
 
+ 
+
+///TODO 
+
+feature:install war
+
 
 
 
@@ -359,6 +365,24 @@ http://cxf.apache.org/docs/jax-rs-cors.html
 
 
 
+<dependency>
+  <groupId>org.apache.cxf</groupId>
+  <artifactId>cxf-rt-rs-security-cors</artifactId>
+  <version>2.6.1</version>
+</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
 ...
 >
 
@@ -423,8 +447,6 @@ The Javascript/jQuery code for this tutorial is quite straight-forward. By exami
 
 > #### Karaf: war feature
 
-DEN TO XRHSIMOPOIOU?ME EDW?
-
 
 
 
@@ -483,4 +505,12 @@ bundle:install -s mvn:com.owt6.demo/bundle-impl/1.0.0-SNAPSHOT
 Execute the following on the Karaf command-line:
 ```
 bundle:install -s mvn:com.owt6.demo/bundle-rest/1.0.0-SNAPSHOT
+```
+
+
+
+### Installing: bundle-ui
+Execute the following on the Karaf command-line:
+```
+bundle:install -s mvn:com.owt6.demo/bundle-ui/1.0.0-SNAPSHOT
 ```
