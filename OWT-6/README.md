@@ -1,4 +1,3 @@
-
 # OWT-6: Deploying an Angular Web Application in Karaf
 
 
@@ -53,29 +52,22 @@ Below is the echo service WADL, same as OWT-5:
 
 
 ## 7. Angular project: angular-ui
-The angular-ui is an Angular project which contains the web content and the configuration required in order to deploy itself as an Angular web application.
-
- 
-
-///TODO
-
-feature:install war
+The angular-ui is an Angular project which contains the web content and the configuration required in order to deploy itself as an Angular web application. 
 
 
-
-
-## Web Technology Used
+### Web Technology Used
 In order to create the user interface for the application of this tutorial, the following technologies were used.
 
 
 > ### Angular
-Angular (commonly referred to as "Angular 2+" or "Angular 2") is a TypeScript-based open-source front-end web application platform led by the Angular Team at Google and by a community of individuals and corporations to address all of the parts of the developer's workflow while building complex web applications. Angular is a complete rewrite from the same team that built AngularJS.
+> Angular (commonly referred to as "Angular 2+" or "Angular 2") is a TypeScript-based open-source front-end web application platform 
+> led by the Angular Team at Google and by a community of individuals and corporations to address all of the parts of the 
+> developer's workflow while building complex web applications. Angular is a complete rewrite from the same team that built AngularJS.
 
 
 ## Creating an Angular Web application
 
-
-### Setup Environment Prerequisites
+In order to create an Angular web application first we need to setup some environment prerequisites.
 
 
 #### Install Python
@@ -97,10 +89,12 @@ Download and install Python 2.7.* version from [python.org/downloads](https://ww
 
 
 > ### npm
+>
+>NPM stands for Node Package Manager. It's an online repository of node packages that can be quickly and programmatically installed 
+>from the command line, with the `npm` command line interface that comes with Node.
 
-NPM stands for Node Package Manager. It's an online repository of node packages that can be quickly and programmatically installed from the command line, with the `npm` command line interface that comes with Node.
 
-
+### Create Angular App
 
 
 Create a new Angular project called **angular-ui**:
@@ -140,10 +134,10 @@ Inside the `angular-ui` folder that should have just been created, you’ll find
 
 
 
-### Angular modules
-
-Modules are a great way to organize an application and extend it with capabilities from external libraries.
-Many Angular libraries are modules (such as FormsModule, HttpModule, and RouterModule). Many third-party libraries are available as NgModules (such as Material Design, Ionic, AngularFire2).
+>### Angular modules
+>Modules are a great way to organize an application and extend it with capabilities from external libraries.
+>Many Angular libraries are modules (such as FormsModule, HttpModule, and RouterModule). Many third-party libraries are available as 
+>NgModules (such as Material Design, Ionic, AngularFire2).
 
 #### Bootstrapping in main.ts
 
@@ -158,7 +152,8 @@ The main entry point `main.ts` compiles the application with the JIT compiler an
 
 #### The root AppModule
 
-Every Angular app has a root module class. By convention, the root module class is called `AppModule` and it exists in a file named `app.module.ts`.
+>Every Angular app has a root module class. By convention, the root module class is called `AppModule` and it exists in a file named 
+>`app.module.ts`.
 
 A simple AppModule:
 ```ts
@@ -174,11 +169,13 @@ import { AppComponent }  from './app.component';
 export class AppModule { }
 ```
 
-#### The NgModule
+>#### The NgModule
+>
+>An `NgModule` is a class adorned with the `@NgModule` decorator function. @NgModule takes a metadata object that tells Angular how 
+>to compile and run module code. It identifies the module's own components, directives, and pipes, making some of them public so 
+>external components can use them. @NgModule may add service providers to the application dependency injectors.
 
-An `NgModule` is a class adorned with the `@NgModule` decorator function. @NgModule takes a metadata object that tells Angular how to compile and run module code. It identifies the module's own components, directives, and pipes, making some of them public so external components can use them. @NgModule may add service providers to the application dependency injectors.
-
-The following table summarizes the NgModule metadata properties.
+The following table summarizes the NgModule metadata properties:
 
 Property|Description
 ---|--------
@@ -190,7 +187,7 @@ bootstrap| A list of components that can be bootstrapped.
 entryComponents| A list of components that are not referenced in a reachable component template.
 
 
-Import the NgModule for each component you want to use:
+Add the NgModule to each component you want to use:
 
 In the current example at `app.module.ts`:
 ```ts
@@ -199,16 +196,9 @@ import { NgModule } from '@angular/core';
 //...
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    MaterialModule,
-    BrowserAnimationsModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+
+ // ngModule declarations..
+ 
 })
 ```
 
@@ -222,7 +212,9 @@ The user interface components are laid-out and styled in the `app.component.html
 
 ### Step 1: Install Angular Angular CDK
 
-Angular CDK is a standalone package, whose goal is to give developers specific tools to create components for the web. Angular CDK is the acronym of `Angular component dev kit`. This signifies that Angular CDK are general-purpose tools for building components that are not coupled to Material Design.
+>Angular CDK is a standalone package, whose goal is to give developers specific tools to create components for the web. Angular CDK 
+>is the acronym of `Angular component dev kit`. This signifies that Angular CDK are general-purpose tools for building components 
+>that are not coupled to Material Design.
 
 
 npm install @angular/cdk
@@ -230,7 +222,8 @@ npm install @angular/cdk
 
 ### Step 2:Install compiler-cli
 
-Angular cli is a command line interface to scaffold and build angular apps using nodejs style (commonJs) modules. Not only it provides you scalable project structure, instead it handles all common tedious tasks for you out of the box.
+>Angular cli is a command line interface to scaffold and build angular apps using nodejs style (commonJs) modules. Not only it 
+>provides you scalable project structure, instead it handles all common tedious tasks for you out of the box.
 
 To install Angular cli use the npm tool:
 
@@ -253,10 +246,16 @@ To enable these animations to your app, you have to install the `@angular/animat
 
 
 Also include the `BrowserAnimationsModule` in the app at `app.module.ts`:
- ![](img/BrowserAnimationsModule.png)
+
+```ts
+// other imports
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// ...
+
+```
 
 
-### Step 5: Import the component modules
+### Step 5: Import The Component Modules
 
 As mentioned [before LINK pending](pending), To use the component you have to add it at the module it needs to be used.
 A component declaration is separated in three parts, initially it must be imported to each `APP_NAME.module.ts`, secondly  it must be placed in `declarations` field of NgModule and optionally at `bootstrap` field in the case where this component is a starting one.
@@ -277,7 +276,7 @@ import { AppComponent } from './app.component';
 ```
 
 
-### Step 4: Include a theme
+### Step 6: Include A Theme
 
 Including a theme is required to apply all of the core and theme styles to your application.
 
@@ -291,7 +290,7 @@ Edit `Style.scss` and add at the top of it:
 
 
 
-### Step 5: Install external library HammerJS
+### Step 7: Install External Library HammerJS
 Some components rely on library `HammerJS` for gestures. In order to get the full feature-set of these components, HammerJS must be loaded into the application:
 
     npm install --save hammerjs
@@ -328,7 +327,6 @@ Open an browser and navigate to http://localhost:4200/ where Angular default pag
 
 
 > ### Main Content
-
 > As it can be seen in the HTML snippet, the content `div` contains a header element, the message log box where all messages are displayed, and the controls where message input and the Send button reside. Each of these elements has an `id` attribute.
 
 
@@ -336,7 +334,7 @@ The src/app/app.component.html
 
 > ```html
 ><div>
-### TODO ADD
+# TODO ADD
 > </div>
 >```
 
@@ -348,27 +346,21 @@ The src/app/app.component.html
 > ...
 >
 > #header{
-##### TODO ADDD
+# TODO ADD
 > }
 >
 >
-
-// mexri edw perigrafetai to ui..
-
-
-
 
 
 ### Business Logic
 The Angular/Typescript code for this tutorial is quite straight-forward. By examining the _bundle-ui/angular/src/_ folder we can identify the following points of interest.
 
-//TODO ADD ton tropo pou leitourgei to chat... me ta html snipets..
+# TODO ADD ton tropo pou leitourgei to chat... me ta html snipets..
 
 
-
-#### Angular Services
-
-A service is used when a common functionality needs to be provided to various modules. In this tutorial we will create a simple Angular service which it will call the OSGi REST endpoint (introduced at [OWT-4 LINK PENDINg](link)).
+>#### Angular Services
+>A service is used when a common functionality needs to be provided to various modules. In this tutorial we will create a simple 
+>Angular service which it will call the OSGi REST endpoint (introduced at [OWT-4 LINK PENDINg](link)).
 
 
 - Step 1 − Create a new folder (ex: /angular/src/service) and add a new file `service.ts`, wherein create a class named `MessageService`  which has the injectable decorator. The injectable decorator allows the functionality of this class to be injected and used in any Angular JS module.
@@ -407,18 +399,16 @@ import { MessageService } from "../service/service";
 
 > #### Endpoint Call Definition
 >The service/service.ts is where all the interaction with the backend is tacking place.
-
-##Here we simply assign the relative URL of the REST service endpoint to a variable. Since the webapp is deployed on the Karaf-embedded Jetty, the complete URL should be something like `http://localhost:8181/cxf/api/echo/`.
+>Here we simply assign the relative URL of the REST service endpoint to a variable. Since the webapp is deployed on the 
+>Karaf-embedded Jetty, the complete URL should be something like `http://localhost:8181/cxf/api/echo/`.
 
 ```ts
   private headers = new Headers({'Content-Type': 'application/json'});
   private url = '/cxf/api/echo/';  // URL to web api
 ```
 
-> #### Calling the REST endpoint
-
+> #### Calling The REST Endpoint
 > The following snippet shows the actual way the Angular service calls the backend REST service.
-
 > This function is responsible for sending the message to the REST service, and then handling the response.
 > The `url` is the relative (or may be absolute) URL of the REST endpoint.
 > The `post` is the HTTP method used for the request.
@@ -459,35 +449,38 @@ After declaring and implement the service, we are able to call the service via a
 
 ### Apache Karaf WebContainer and Angular
 
-Up to now we have created an simple but complete Angular app. We now need to add that app to karaf.
+Up to now we have created a simple but complete Angular app. The next step is to add that app to karaf.
 To do so, we will need the [Karaf war feature LINK pending](Link) but also the `frontend-maven-plugin`.
-This plugin downloads/installs `Node` and `NPM` locally in project files, executes `npm install`, and then any Angular command may needed.
+
+>### The frontend-maven-plugin
+>This plugin downloads/installs `Node` and `NPM` locally in project files, executes `npm install`, and then any Angular command may 
+>needed.
 
 We set it up at the pom.xml of `bundle-ui` bundle:
 ```xml
     <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.0</version>
-                <configuration>
-                    <workingDirectory>angular</workingDirectory>
-                    <installDirectory>temp</installDirectory>
-                </configuration>
+          <groupId>com.github.eirslett</groupId>
+          <artifactId>frontend-maven-plugin</artifactId>
+          <version>1.0</version>
+          <configuration>
+              <workingDirectory>angular</workingDirectory>
+              <installDirectory>temp</installDirectory>
+          </configuration>
 ```
 Within the `plugin` we add the list of desired executions, here is the example that installs the `animations` package:
 
 ```xml
     <!-- It will execute command "npm install" inside "/angular" directory -->
-                    <execution>
-                        <id>npm install animations</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>install --save @angular/animations</arguments>
-                            <!-- <skip>true</skip>  -->
-                        </configuration>
-                    </execution>
+            <execution>
+                <id>npm install animations</id>
+                <goals>
+                    <goal>npm</goal>
+                </goals>
+                <configuration>
+                    <arguments>install --save @angular/animations</arguments>
+                    <!-- <skip>true</skip>  -->
+                </configuration>
+            </execution>
 ```
 
 >Note: `frontend-maven-plugin` is set to install all the nessesary packages including `compiler-cli`, `cdk`and others that needs to be installed only once. So in development environments it is sugested to use the `<skip>true</skip>` inside the `<configuration>` tag in order to save time.
