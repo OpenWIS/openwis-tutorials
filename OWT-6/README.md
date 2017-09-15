@@ -13,7 +13,7 @@ It is a modified version of OWT-5, in which the development and the deployment o
 
 
 This tutorial will demonstrate the following:
-1. A single-page web application buid in Angular.
+1. A single-page web application build in Angular.
 2. A mechanism which will consume REST services - like the ones defined in OWT-5 - by using Angular.
 
 
@@ -57,7 +57,7 @@ The angular-ui is an Angular project which contains the web content and the conf
 
  
 
-///TODO 
+///TODO
 
 feature:install war
 
@@ -68,14 +68,14 @@ feature:install war
 In order to create the user interface for the application of this tutorial, the following technologies were used.
 
 
-> ### Angular 
+> ### Angular
 Angular (commonly referred to as "Angular 2+" or "Angular 2") is a TypeScript-based open-source front-end web application platform led by the Angular Team at Google and by a community of individuals and corporations to address all of the parts of the developer's workflow while building complex web applications. Angular is a complete rewrite from the same team that built AngularJS.
 
 
 ## Creating an Angular Web application
 
 
-### Setup Enviroment Prerequisites
+### Setup Environment Prerequisites
 
 
 #### Install Python
@@ -107,7 +107,7 @@ Create a new Angular project called **angular-ui**:
 
     ng new angular-ui --style scss
 
-This will create a new `Angular 2` project from scratch and set it up so that you can use SASS as CSS preprocessor. 
+This will create a new `Angular 2` project from scratch and set it up so that you can use SASS as CSS processor.
 
 Inside the `angular-ui` folder that should have just been created, you’ll find a folder structure that will look more or less like this:
 
@@ -124,7 +124,7 @@ Inside the `angular-ui` folder that should have just been created, you’ll find
 
 # Dependencies
 - node_modules          # the source code of your app's dependencies
-- package.json          # the manifest of your app that states all dependencies 
+- package.json          # the manifest of your app that states all dependencies
 
 # TypeScript configuration
 - main.ts               # The main entry point for your app
@@ -192,7 +192,7 @@ entryComponents| A list of components that are not referenced in a reachable com
 
 Import the NgModule for each component you want to use:
 
-In the current examble at `app.module.ts`:
+In the current example at `app.module.ts`:
 ```ts
 import { NgModule } from '@angular/core';
 
@@ -212,25 +212,7 @@ import { NgModule } from '@angular/core';
 })
 ```
 
-
-
-
-
-META STON IDIO FAKELO
-
-### Angular Angular CDK 
-
-
-npm install @angular/cdk@2.0.0-beta.10
-
-
-# ## compiler-cli
-
-Angular cli is a command line interface to scaffold and build angular apps using nodejs style (commonJs) modules. Not only it provides you scalable project structure, instead it handles all common tedious tasks for you out of the box.
-
-To install Angular cli use the npm tool:
-
-    npm install --save @angular/compiler-cli 
+---
 
 
 ### UI Layout & Styling
@@ -238,28 +220,61 @@ To install Angular cli use the npm tool:
 The user interface components are laid-out and styled in the `app.component.html` and `style.css` files. For Better look and feel we will use `Angular Material` along with `Angular Animations`, decorated with one of Angular's official css theme.
 
 
+### Step 1: Install Angular Angular CDK
 
-#### Step 1: Install Angular Material
+Angular CDK is a standalone package, whose goal is to give developers specific tools to create components for the web. Angular CDK is the acronym of `Angular component dev kit`. This signifies that Angular CDK are general-purpose tools for building components that are not coupled to Material Design.
 
- Material Design components are pre-built ui components, created for and with Angular.
+
+npm install @angular/cdk
+
+
+### Step 2:Install compiler-cli
+
+Angular cli is a command line interface to scaffold and build angular apps using nodejs style (commonJs) modules. Not only it provides you scalable project structure, instead it handles all common tedious tasks for you out of the box.
+
+To install Angular cli use the npm tool:
+
+    npm install --save @angular/compiler-cli
+
+
+
+#### Step 3: Install Angular Material
+
+ Material Design components are pre-built UI components, created for and with Angular.
 
     npm install --save @angular/material
 
 
-#### Step 2: Animations
-Some Material components depend on the `Angular animations module` in order to be able to do more advanced transitions. 
-To enable these animations to your app, you have to install the `@angular/animations module` 
+#### Step 4: Install Animations package
+Some Material components depend on the `Angular animations module` in order to be able to do more advanced transitions.
+To enable these animations to your app, you have to install the `@angular/animations module`
 
-        npm install --save @angular/animations
+    npm install --save @angular/animations
 
 
-Also include the `BrowserAnimationsModule` in the app:
+Also include the `BrowserAnimationsModule` in the app at `app.module.ts`:
  ![](img/BrowserAnimationsModule.png)
 
 
-### Step 3: Import the component modules
+### Step 5: Import the component modules
 
-As mentioned [before LINK pending](pending),
+As mentioned [before LINK pending](pending), To use the component you have to add it at the module it needs to be used.
+A component declaration is separated in three parts, initially it must be imported to each `APP_NAME.module.ts`, secondly  it must be placed in `declarations` field of NgModule and optionally at `bootstrap` field in the case where this component is a starting one.
+
+```ts
+import { AppComponent } from './app.component';
+
+//...
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  // other NgModule stuff..
+  bootstrap: [AppComponent]
+})
+
+```
 
 
 ### Step 4: Include a theme
@@ -269,6 +284,11 @@ Including a theme is required to apply all of the core and theme styles to your 
 Edit `Style.scss` and add at the top of it:
 
     @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+> Note: you can have globally accessible themes or app accessible only. By editing the specific `scss` file:
+> - src/styles.scss # Global
+> - src/APP_NAME/APP_NAME.component.scss # App local
+
 
 
 ### Step 5: Install external library HammerJS
@@ -281,13 +301,20 @@ After installing, import it on the app's entry point `src/main.ts`:
     import 'hammerjs';
 
 
-TODO   check 
-https://stackoverflow.com/questions/39496267/module-not-found-error-cant-resolve-hammerjs
+
+### Verify Installed Versions
+
+To view the current installed packages  and their versions of an Angular App, navigate to the app home folder and execute:
+
+    ng -v
+
+Current tutorial's installed versions:
+![](img/ngV.png)
 
 
+#### Verify setup
 
-#### Test    
-You can test that everything works as it should by running the development server. 
+You can test that everything works as it should by running the development server.
 
 In the Angular project `angular-ui` folder, type the following command:
 
@@ -295,29 +322,25 @@ In the Angular project `angular-ui` folder, type the following command:
 
 Open an browser and navigate to http://localhost:4200/ where Angular default page will appear:
 
- ![](img/angularUiDefaultpage.png.png)
+ ![](img/angularUiDefaultpage.png)
 
 
 
-> #### Main Content 
+
+> ### Main Content
 
 > As it can be seen in the HTML snippet, the content `div` contains a header element, the message log box where all messages are displayed, and the controls where message input and the Send button reside. Each of these elements has an `id` attribute.
 
 
-We edit src/app/app.component.html
-
-
+The src/app/app.component.html
 
 > ```html
-> <div id="content">
->   <div id="header">OWT-5: Echo Service</div>
->   <div id="message-log"></div>
->   <div id="controls">
->       <input id="message-input" type="text" placeholder="Type message">
->       <button id="send">Send</button>
->   </div>
+><div>
+### TODO ADD
 > </div>
 >```
+
+
 >
 > These `id` attributes are used in the CSS file to assign style information to their elements, as with the `header` element below.
 >
@@ -325,131 +348,149 @@ We edit src/app/app.component.html
 > ...
 >
 > #header{
->   padding: 20px 0 10px;
->   font-size: 32px;
->   background: #ffffff;
->   color: #1976D2;
->   border-bottom: 1px solid #1976D2;
+##### TODO ADDD
 > }
 >
-> 
-
-
-
-MessageService to kanoume import
-sto app module.ts //TEST me?
-
-
-kai sto providers:
-  providers: [],
-
-kai sto appcomponent.ts
-
-
-
-
-
-bazw tp HttpModule  episis
-
-
-Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:4200' is therefore not allowed access.
-
-
-
-####
-JAX-RS: CORS
-
-
-http://cxf.apache.org/docs/jax-rs-cors.html
-
-
-
-
-<dependency>
-  <groupId>org.apache.cxf</groupId>
-  <artifactId>cxf-rt-rs-security-cors</artifactId>
-  <version>2.6.1</version>
-</dependency>
-
-
-
-
-
-
-
-
-
-
-
-
-
-...
 >
+
+// mexri edw perigrafetai to ui..
+
+
+
+
 
 ### Business Logic
-The Javascript/jQuery code for this tutorial is quite straight-forward. By examining the _src/main/webapp/script.js_ file we can identify the following points of interest.
+The Angular/Typescript code for this tutorial is quite straight-forward. By examining the _bundle-ui/angular/src/_ folder we can identify the following points of interest.
 
-> #### Endpoint Definition
-> Here we simply assign the relative URL of the REST service endpoint to a variable. Since the webapp is deployed on the Karaf-embedded Jetty, the complete URL should be something like `http://localhost:8181/cxf/api/echo/`.
->
-> ```js
-> var SERVICE_URL = '/cxf/api/echo/';
->```
+//TODO ADD ton tropo pou leitourgei to chat... me ta html snipets..
 
-> #### Sending Messages
-> This snippet shows what actually occurs when the user sends a message. The text is trimmed (leading and trailing whitespace removed), and if the result is not an empty string, it is added to the message log (the panel that displays all messages). Once that happens, it will be sent to the REST service.
->
-> ```js
-> function sendMessage() {
->   var message = $('#message-input').val();
->   if ($.trim(message).length == 0) {
->       return;
->   }
->   addUserMessageToLog(message);
->   callService(message);
-> }
->```
 
-> #### Calling the REST Service via an Angular Service
 
-#TODO TODO allagh ola auta
+#### Angular Services
 
-> This function is responsible for sending the message to the REST service, and then handling the response. 
-> The `url` is the relative (or may be absolute) URL of the REST endpoint. 
-> The `method` is the HTTP method used for the request.
+A service is used when a common functionality needs to be provided to various modules. In this tutorial we will create a simple Angular service which it will call the OSGi REST endpoint (introduced at [OWT-4 LINK PENDINg](link)).
+
+
+- Step 1 − Create a new folder (ex: /angular/src/service) and add a new file `service.ts`, wherein create a class named `MessageService`  which has the injectable decorator. The injectable decorator allows the functionality of this class to be injected and used in any Angular JS module.
+
+```ts
+@Injectable()
+export class MessageService {
+```
+
+
+- Step 2 − Next in your appComponent module or the module in which you want to use the service, you need to import it, by declaring the relative path as follows:
+
+```ts
+
+import { MessageService } from "../service/service";
+```
+
+ Also the service needs to be defined as a `provider` in the `@Component` decorator:
+```ts
+@Component({
+
+  // mics component definitions..
+
+  providers: [MessageService],
+})
+```
+
+- Step 3 - Finally initialize the service at the constructor in the component, and the service will be ready to use.
+
+
+```ts
+  constructor(private messageService: MessageService) { }
+```
+
+
+
+> #### Endpoint Call Definition
+>The service/service.ts is where all the interaction with the backend is tacking place.
+
+##Here we simply assign the relative URL of the REST service endpoint to a variable. Since the webapp is deployed on the Karaf-embedded Jetty, the complete URL should be something like `http://localhost:8181/cxf/api/echo/`.
+
+```ts
+  private headers = new Headers({'Content-Type': 'application/json'});
+  private url = '/cxf/api/echo/';  // URL to web api
+```
+
+> #### Calling the REST endpoint
+
+> The following snippet shows the actual way the Angular service calls the backend REST service.
+
+> This function is responsible for sending the message to the REST service, and then handling the response.
+> The `url` is the relative (or may be absolute) URL of the REST endpoint.
+> The `post` is the HTTP method used for the request.
 > The `data` is the JSON string that will be sent as the POST message body.
 > The `contentType` declares the content type, and **must** match the one specified in the REST endpoint definition on the Java side.
-> If the request is successful, the `done` function will be executed, resulting to showing the received "Echo" message in the UI _(Please note that the response is received in an asynchronous and non-blocking fashion)_.
+> If the request is successful, the `done` function will be executed, resulting to showing the received "Echo" message in the UI Please note that the response is received in an asynchronous and non-blocking fashion. That is the reason we use `toPromise()` function.**The then() function gets executed after the asynchronous `Promise` is completed.** The promise reply will placed at
+`response`, and in this example it is parsed from a JSON format of the [MessageDTO Link gia to owt-4](LINK)
 > In case of error, the `fail` function is executed, and it will display an alert with the cause of the error.
 >
-> ```js
-> function callService(message) {
-> var data = new Object();
-> data.message = message;
->   $.ajax({
->       url: SERVICE_URL,
->       method: 'POST',
->       data: JSON.stringify(data),
->       contentType: 'application/json; charset=utf-8'
->   }).done(function (response) {
->       addEchoMessageToLog(response.message);
->   }).fail(function (jqxhr, textStatus, error) {
->       var err = textStatus + ", " + jqxhr.responseText;
->       alert("Request Failed: " + err);
->   });
-> }
->```
+
+ ```ts
+
+ create(message): Promise<any> {
+   
+    var data:any = new Object();
+    data.message = message;
+
+      return this.http
+      .post(this.url,  JSON.stringify(data), {headers: this.headers})
+      .toPromise()
+      .then(response => {
+        return  JSON.parse(response["_body"]).message;
+      }
+    )
+      .catch(this.handleError);
+  }
+```
+
+### Call the service
+After declaring and implement the service, we are able to call the service via a component module:
+
+```ts
+
+   this.messageService.create(message).then((result) => {
+        aLocalVariable = result;
+```
 
 
+### Apache Karaf WebContainer and Angular
 
+Up to now we have created an simple but complete Angular app. We now need to add that app to karaf.
+To do so, we will need the [Karaf war feature LINK pending](Link) but also the `frontend-maven-plugin`.
+This plugin downloads/installs `Node` and `NPM` locally in project files, executes `npm install`, and then any Angular command may needed.
 
-### Apache Karaf WebContainer
+We set it up at the pom.xml of `bundle-ui` bundle:
+```xml
+    <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.0</version>
+                <configuration>
+                    <workingDirectory>angular</workingDirectory>
+                    <installDirectory>temp</installDirectory>
+                </configuration>
+```
+Within the `plugin` we add the list of desired executions, here is the example that installs the `animations` package:
 
-> #### Karaf: war feature
+```xml
+    <!-- It will execute command "npm install" inside "/angular" directory -->
+                    <execution>
+                        <id>npm install animations</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install --save @angular/animations</arguments>
+                            <!-- <skip>true</skip>  -->
+                        </configuration>
+                    </execution>
+```
 
-
-
-
+>Note: `frontend-maven-plugin` is set to install all the nessesary packages including `compiler-cli`, `cdk`and others that needs to be installed only once. So in development environments it is sugested to use the `<skip>true</skip>` inside the `<configuration>` tag in order to save time.
 
 
 
@@ -507,10 +548,9 @@ Execute the following on the Karaf command-line:
 bundle:install -s mvn:com.owt6.demo/bundle-rest/1.0.0-SNAPSHOT
 ```
 
-
-
 ### Installing: bundle-ui
 Execute the following on the Karaf command-line:
 ```
 bundle:install -s mvn:com.owt6.demo/bundle-ui/1.0.0-SNAPSHOT
 ```
+
