@@ -16,88 +16,66 @@ import { MessageService } from "../service/service";
 export class AppComponent implements OnInit, AfterViewChecked {
 
   @ViewChild('scrollme') private myScrollContainer: ElementRef;
+  @ViewChild('messageBox') private messageBox: HTMLInputElement;
 
   title = 'app';
-  chatroom: string[] = [];
-  home: string[] = [];
-  away: string[] = [];
-
-  // 8a exoume 2 listes mia pou 8a einai ta chat tou home kai mia pou 8a einai tou away..
-  // 8a bazoume kai tis 2 sthn chatroom kai 8a 
-
-
-  chatroomText: string;
-  message: string = '';
-  echoReply: string = '';
+  messages: Object[] = [];
+  SERVICE_URL = '/cxf/api/echo/';
+  private textBoxMessage: String;
 
   constructor(private messageService: MessageService) { }
 
+  printData() {
 
-  // user messages came through here:
-  printData(message: string) {
-
-    if (message.length > 0) {
-      this.printlocalMessage(message);
-      this.callService(message);
+    if (this.textBoxMessage.length > 0) {
+      var msgClone = new String(this.textBoxMessage);
+      this.textBoxMessage = '';
+      this.printlocalMessage(msgClone);
+      this.callService(msgClone);
     }
   }
 
-  private printlocalMessage(message: string) {
-
+  private printlocalMessage(message: String) {
     this.addMessageTologQueue(message, false);
-    this.message = '';
   }
 
-
   private callService(message) {
-
+    var messageObject = new Object();
+    messageObject['message'] = message;
     if (message.length > 0) {
-      this.messageService.create(message).then((result) => {
-        this.echoReply = result;
-        this.addMessageTologQueue(this.echoReply, true);
-        this.echoReply = '';
-
+      var thiz = this;
+      this.messageService.create(this.SERVICE_URL, messageObject).then((result) => {
+        this.addMessageTologQueue(result.message, true);
       }).catch((ex) => {
         console.error('Error fetching response', ex);
       });
     }
   }
 
-
-
-  private addMessageTologQueue(text: string, isFromService: Boolean): void {
-
+  addMessageTologQueue(text: String, isFromService: Boolean): void {
+    var message = new Object();
+    message['text'] = text;
+    message['when'] = new Date().toLocaleTimeString();
     if (isFromService) {
-      this.home.push("");
-      this.away.push(text);
+      message['from'] = 'echo';
     } else {
-      this.home.push(text);
-      this.away.push("");
+      message['from'] = 'user';
     }
-// chatroom is the actual placeholder for the chat log.
-    this.chatroom.push(text);
-    this.chatroomText = this.chatroom.join("\n");
 
+    this.messages.push(message);
   }
 
-
-
-
-  // we scoll to bottom chat so the last message will be always desplayed.
   ngOnInit() {
-
     this.scrollToBottom();
   }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
-
   }
+
   scrollToBottom(): void {
     try {
-
       this.myScrollContainer.nativeElement.scrollTop = +this.myScrollContainer.nativeElement.scrollHeight;
-
     } catch (err) { }
   }
 

@@ -1,48 +1,41 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1 >
-    OWT-6
-  </h1>
-</div>
-<!-- ola tha ta baloume edw -->
+<div id="header">OWT-6: Echo Service</div>
 
 <div style="text-align:center">
   <div>
-  
- 
-<!-- <nav  class="owt-list">  -->
-    <md-nav-list  flex  >
-      <div  #scrollme class="owt-list" >
 
-        <md-list-item   *ngFor="let message of chatroom; let i = index" [attr.data-index]="i"    >
-          <!--  [attr.force-narrow]="value ? '' :null" -->
-            <h3 mdLine  class="message-log-item-user" > {{home[i]}} </h3>
-            <h3 mdLine  class="message-log-item-echo" > {{away[i]}} </h3>
+    <md-nav-list flex>
+      <div #scrollme class="owt-list">
+
+        <md-list-item *ngFor="let message of messages; let i = index">
+
+          <div *ngIf="message.from=='user'" class="user-message">
+            <div class="title-line">
+              <div class="name">User</div>
+              <div class="when">{{message.when}}</div>
+            </div>
+            <div class="message-line">{{message.text}}</div>
+          </div>
+
+          <div *ngIf="message.from=='echo'" class="echo-message">
+            <div class="title-line">
+              <div class="name">Echo</div>
+              <div class="when">{{message.when}}</div>
+            </div>
+            <div class="message-line">{{message.text}}</div>
+          </div>
+
         </md-list-item>
-        <!-- <span class="demo-2"> - - {{message}} </span> -->
-        <!-- 
-               <md-list-item  >
-                {{message}}
-                <p mdLine>
-                  </p> 
-              </md-list-item>
-          <img mdListAvatar src="..." alt="..." >
-        <h3 mdLine> {{chatroom[i]}} </h3>
-        <a mdLine href="...">{{ link }}</a>
-        -->
       </div>
-      </md-nav-list>
-  
+    </md-nav-list>
+
   </div>
   <div>
     <md-input-container class="owt-form">
-      <input mdInput [(ngModel)]="message" placeholder="Message"  size="50%" (keyup.enter)="printData(message)" value="">
+      <input #messageBox mdInput [(ngModel)]="textBoxMessage" placeholder="Message" size="50%" (keyup.enter)="printData()" value="">
     </md-input-container>
-  
 
-     <button md-fab (click)="printData(message)" color="primary" >Send</button> 
-     <!-- sendDataMockService(message) -->
-    
-  
+
+    <button md-fab (click)="printData(message)" color="primary">Send</button>
+
   </div>
 </div>

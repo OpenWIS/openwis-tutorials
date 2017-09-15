@@ -1,34 +1,35 @@
-import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
-
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions, URLSearchParams } 
+from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class MessageService {
+    headers: Headers;
+    options: RequestOptions;
 
-  private headers = new Headers({'Content-Type': 'application/json'});
-  private url = '/cxf/api/echo/';  // URL to web api
+    constructor(private http: Http) {
+        this.headers = new Headers({ 'Content-Type': 'application/json', 
+                                     'Accept': 'application/json' });
+        this.options = new RequestOptions({ headers: this.headers });
+    }
 
-  constructor(private http: Http) { }
+    create(url: string, param: any): Promise<any> {
+    let body = JSON.stringify(param);
+    return this.http
+        .post(url, body, this.options)
+        .toPromise()
+        .then(this.extractData)
+        .catch(this.handleError);
+    }  
 
-    create(message): Promise<any> {
-    
-    var data:any = new Object();
-    data.message = message;
+    private extractData(res: Response) {
+        let body = res.json();
+        return body || {};
+    }
 
-      return this.http
-      .post(this.url,  JSON.stringify(data), {headers: this.headers})
-      .toPromise()
-      .then(response => {
-        ///hardcoded 
-        return  JSON.parse(response["_body"]).message;
-      }
-    )
-      .catch(this.handleError);
-  }
-
-   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
-  }
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
+    }
 }
