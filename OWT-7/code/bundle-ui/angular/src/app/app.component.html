@@ -1,0 +1,41 @@
+<div id="header">OWT-7: Echo Service</div>
+
+<div style="text-align:center">
+  <div>
+
+    <md-nav-list flex>
+      <div #scrollme class="owt-list">
+
+        <md-list-item *ngFor="let message of messages; let i = index">
+
+          <div *ngIf="message.from=='user'" class="user-message">
+            <div class="title-line">
+              <div class="name">User</div>
+              <div class="when">{{message.when}}</div>
+            </div>
+            <div class="message-line">{{message.text}}</div>
+          </div>
+
+          <div *ngIf="message.from=='echo'" class="echo-message">
+            <div class="title-line">
+              <div class="name">Echo</div>
+              <div class="when">{{message.when}}</div>
+            </div>
+            <div class="message-line">{{message.text}}</div>
+          </div>
+
+        </md-list-item>
+      </div>
+    </md-nav-list>
+
+  </div>
+  <div>
+    <md-input-container class="owt-form">
+      <input #messageBox mdInput [(ngModel)]="textBoxMessage" placeholder="Message" size="50%" (keyup.enter)="printData()" value="">
+    </md-input-container>
+
+
+    <button md-fab (click)="printData(message)" color="primary">Send</button>
+
+  </div>
+</div>

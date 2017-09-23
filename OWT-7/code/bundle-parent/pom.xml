@@ -1,0 +1,50 @@
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.owt7.demo</groupId>
+	<artifactId>parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>../bundle-lib</module>
+		<module>../bundle-api</module>
+		<module>../bundle-impl</module>
+		<module>../bundle-rest</module>
+		<module>../bundle-db</module>
+		<module>../bundle-ui</module>
+	</modules>
+
+	<properties>
+		<maven-bundle-plugin.version>3.2.0</maven-bundle-plugin.version>
+		<blueprint-maven-plugin.version>1.5.0</blueprint-maven-plugin.version>
+		<maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
+		<maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
+		<maven.install.plugin.version>2.5.2</maven.install.plugin.version>
+		<pax.cdi.version>0.12.0</pax.cdi.version>
+		<javax.inject.version>1</javax.inject.version>
+		<javax.ws.rs-api.version>2.0.1</javax.ws.rs-api.version>
+		<!-- new at owt7:  -->
+		<javax.transaction.version>1.2</javax.transaction.version>
+		
+		
+	</properties>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	
+</project>
